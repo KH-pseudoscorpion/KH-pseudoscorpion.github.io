@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kyung-Hoon Jeong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f5f5f3;
+      color: #0a0a0a;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #0a0a0a;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* ── MAIN CONTAINER ── */
+    .page {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+
+    /* ── PROFILE SECTION ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0;
+      background: #fff;
+      border: 1px solid #0a0a0a;
+    }
+    .profile-img-wrap {
+      border-right: 1px solid #0a0a0a;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .profile-img-wrap img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      filter: grayscale(20%);
+    }
+    .profile-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+    .profile-links a {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0a0a0a;
+      text-decoration: none;
+      border: 1px solid #0a0a0a;
+      padding: 5px 8px;
+      text-align: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .profile-links a:hover {
+      background: #0a0a0a;
+      color: #fff;
+    }
+    .profile-info {
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .profile-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 8px;
+    }
+    .profile-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .profile-role {
+      font-size: 11px;
+      color: #666;
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+    .profile-divider {
+      width: 40px;
+      height: 1px;
+      background: #0a0a0a;
+      margin-bottom: 20px;
+    }
+    .profile-bio {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 20px;
+    }
+    .profile-contact {
+      font-size: 12px;
+      color: #555;
+    }
+    .profile-contact a {
+      color: #0a0a0a;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+    }
+    .profile-contact a:hover { border-color: #0a0a0a; }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .tag {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid #ccc;
+      padding: 3px 9px;
+      color: #666;
+    }
+
+    /* ── EDUCATION ── */
+    .section {
+      margin-top: 2px;
+      background: #fff;
+      border: 1px solid #0a0a0a;
+      border-top: none;
+    }
+    .section-header {
+      padding: 18px 36px;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .section-num {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #bbb;
+    }
+    .edu-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .edu-table tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .edu-table tr:last-child { border-bottom: none; }
+    .edu-table td {
+      padding: 13px 36px;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.5;
+    }
+    .edu-table td:first-child {
+      width: 160px;
+      color: #999;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .edu-table td strong {
+      font-weight: 500;
+      color: #0a0a0a;
+    }
+
+    /* ── PHOTO GRID ── */
+    .photo-section {
+      margin-top: 2px;
+      background: #fff;
+      border: 1px solid #0a0a0a;
+      border-top: none;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .photo-item {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-right: 1px solid #0a0a0a;
+      border-bottom: 1px solid #0a0a0a;
+      position: relative;
+    }
+    .photo-item:nth-child(3n) { border-right: none; }
+    .photo-item:nth-child(4), .photo-item:nth-child(5), .photo-item:nth-child(6) { border-bottom: none; }
+    .photo-item a { display: block; width: 100%; height: 100%; }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      filter: grayscale(15%);
+    }
+    .photo-item:hover img { transform: scale(1.04); }
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,10,0.72);
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 8px 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .photo-item:hover .photo-caption { opacity: 1; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-text {
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-img-wrap { border-right: none; border-bottom: 1px solid #0a0a0a; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-item:nth-child(3n) { border-right: 1px solid #0a0a0a; }
+      .photo-item:nth-child(2n) { border-right: none; }
+      nav { padding: 0 20px; }
+      .nav-links { gap: 18px; }
+    }
+  </style>
+  <style>
+    #custom-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 99999;
+      cursor: pointer;
+    }
+    #custom-overlay.open { display: flex; align-items: center; justify-content: center; }
+    #custom-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      cursor: default;
+      display: block;
+    }
+    #custom-close {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      z-index: 100000;
+    }
+    #custom-close::before, #custom-close::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 26px; height: 2px;
+      background: #fff;
+    }
+    #custom-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+    #custom-close::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+  <a href="index.html" class="nav-logo">Kyung-Hoon Jeong</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="page">
+
+  <!-- PROFILE -->
+  <div class="profile-grid">
+    <div class="profile-img-wrap">
+      <img src="Kyung-Hoon-Jeong.png" alt="Kyung-Hoon Jeong">
+      <div class="profile-links">
+        <a href="https://www.researchgate.net/profile/Kyung-Hoon-Jeong" target="_blank">ResearchGate ↗</a>
+        <a href="https://www.instagram.com/kh_jjjjeong" target="_blank">Instagram ↗</a>
+        <a href="mailto:J.Kyung-Hoon@leibniz-lib.de">E-mail ↗</a>
+      </div>
+    </div>
+    <div class="profile-info">
+      <h1 class="profile-name">Kyung-Hoon<br>Jeong</h1>
+      <div class="profile-role">Ph.D. Student &nbsp;·&nbsp; Leibniz Institute for the Analysis of Biodiversity Change, University of Hamburg</div>
+      <div class="profile-divider"></div>
+      <p class="profile-bio">
+        I study the phylogeography and diversity of pseudoscorpions across East Asia, 
+        investigating how the region's complex geological history has shaped the dispersal 
+        and evolutionary history of these small but ecologically significant arachnids. 
+        My interests extend to the broader distribution and evolutionary history of various invertebrates.
+      </p>
+      <div class="profile-contact">
+        J.Kyung-Hoon@leibniz-lib.de &nbsp;·&nbsp; Hamburg, Germany
+      </div>
+      <div class="tags">
+        <span class="tag">Arachnology</span>
+        <span class="tag">Biogeography</span>
+        <span class="tag">East Asia</span>
+        <span class="tag">Genomics</span>
+        <span class="tag">Pseudoscorpiones</span>
+        <span class="tag">Systematics</span>
+        <span class="tag">Taxonomy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Education &amp; Research Experience</h2>
+    </div>
+    <table class="edu-table">
+      <tr><td>03.2019 – 08.2023</td><td><strong>B.S.A.</strong>, Seoul National University</td></tr>
+      <tr><td>06.2020 – 12.2022</td><td><strong>Undergraduate Research Student</strong>, Seoul National University</td></tr>
+      <tr><td>12.2022 – 02.2023</td><td><strong>Volunteer Researcher</strong>, Leibniz Institute for the Analysis of Biodiversity Change</td></tr>
+      <tr><td>03.2022 – present</td><td><strong>Participating Researcher</strong>, National Institute for Biological Resources</td></tr>
+      <tr><td>09.2023 – 08.2025</td><td><strong>M.A.</strong>, Jeonbuk National University</td></tr>
+      <tr><td>10.2025 – present</td><td><strong>Ph.D.</strong>, Leibniz Institute for the Analysis of Biodiversity Change</td></tr>
+      <tr><td>10.2025 – present</td><td><strong>Ph.D.</strong>, University of Hamburg</td></tr>
+    </table>
+  </div>
+
+  <!-- PHOTOS -->
+  <div class="photo-section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Photos</h2>
+    </div>
+    <div class="photo-grid">
+      <div class="photo-item">
+        <a href="Allochthonius.jpg" data-lightbox="photos" data-title="<em>Allochthonius</em> Chamberlin, 1929">
+          <img src="Allochthonius.jpg" alt="<em>Allochthonius</em> Chamberlin, 1929">
+          <div class="photo-caption"><em>Allochthonius</em> Chamberlin, 1929</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Anchigarypus.jpg" data-lightbox="photos" data-title="<em>Anchigarypus japonicus</em> (Beier, 1952)">
+          <img src="Anchigarypus.jpg" alt="<em>Anchigarypus japonicus</em> (Beier, 1952)">
+          <div class="photo-caption"><em>Anchigarypus japonicus</em> (Beier, 1952)</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Bisetocreagris.jpg" data-lightbox="photos" data-title="<em>Bisetocreagris</em> Ćurčić, 1983">
+          <img src="Bisetocreagris.jpg" alt="<em>Bisetocreagris</em> Ćurčić, 1983">
+          <div class="photo-caption"><em>Bisetocreagris</em> Ćurčić, 1983</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Dactylochelifer.jpg" data-lightbox="photos" data-title="<em>Dactylochelifer</em> Beier, 1932">
+          <img src="Dactylochelifer.jpg" alt="<em>Dactylochelifer</em> Beier, 1932">
+          <div class="photo-caption"><em>Dactylochelifer</em> Beier, 1932</div>
+        </a>
+     </div>
+      <div class="photo-item">
+        <a href="Haplochernes.jpg" data-lightbox="photos" data-title="<em>Haplochernes</em> Beier, 1932">
+          <img src="Haplochernes.jpg" alt="<em>Haplochernes</em> Beier, 1932">
+          <div class="photo-caption"><em>Haplochernes</em> Beier, 1932</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Mundochthonius.jpg" data-lightbox="photos" data-title="<em>Mundochthonius</em> Chamberlin, 1929">
+          <img src="Mundochthonius.jpg" alt="<em>Mundochthonius</em> Chamberlin, 1929">
+          <div class="photo-caption"><em>Mundochthonius</em> Chamberlin, 1929</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Nipponogarypus.jpg" data-lightbox="photos" data-title="<em>Nipponogarypus</em> Morikawa, 1955">
+          <img src="Nipponogarypus.jpg" alt="<em>Nipponogarypus</em> Morikawa, 1955">
+          <div class="photo-caption"><em>Nipponogarypus</em> Morikawa, 1955</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Paratemnoides.jpg" data-lightbox="photos" data-title="<em>Paratemnoides</em> Harvey, 1991">
+          <img src="Paratemnoides.jpg" alt="<em>Paratemnoides</em> Harvey, 1991">
+          <div class="photo-caption"><em>Paratemnoides</em> Harvey, 1991</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Pararoncus.jpg" data-lightbox="photos" data-title="<em>Pararoncus</em> Chamberlin, 1938">
+          <img src="Pararoncus.jpg" alt="<em>Pararoncus</em> Chamberlin, 1938">
+          <div class="photo-caption"><em>Pararoncus</em> Chamberlin, 1938</div>
+        </a>
+      </div>
+      <div class="photo-item">
+        <a href="Spelaeochthonius.jpg" data-lightbox="photos" data-title="<em>Spelaeochthonius</em> Morikawa, 1954">
+          <img src="Spelaeochthonius.jpg" alt="<em>Spelaeochthonius</em> Morikawa, 1954">
+          <div class="photo-caption"><em>Spelaeochthonius</em> Morikawa, 1954</div>
+        </a>
+     </div>
+      <div class="photo-item">
+        <a href="Paraliochthonius.jpg" data-lightbox="photos" data-title="<em>Paraliochthonius</em> Beier, 1956">
+          <img src="Paraliochthonius.jpg" alt="<em>Paraliochthonius</em> Beier, 1956">
+          <div class="photo-caption"><em>Paraliochthonius</em> Beier, 1956</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-text">Leibniz Institute for the Analysis of Biodiversity Change, University of Hamburg</span>
+  <span class="footer-text">© 2025 Kyung-Hoon Jeong</span>
+</footer>
+
+
+<script>
+  lightbox.option({ wrapAround: true, fadeDuration: 250, resizeDuration: 250, disableScrolling: true });
+
+  var btn = document.getElementById("lb-close-btn");
+
+  function showBtn() { btn.style.display = "block"; }
+  function hideBtn() { btn.style.display = "none"; }
+
+  function doClose() {
+    var lbClose = document.querySelector(".lb-close");
+    if (lbClose) lbClose.click();
+  }
+
+  btn.addEventListener("click", doClose);
+
+  function watchLightbox() {
+    var lb = document.getElementById("lightbox");
+    if (!lb) { setTimeout(watchLightbox, 100); return; }
+
+    var observer = new MutationObserver(function() {
+      if (lb.style.display === "block") { showBtn(); } else { hideBtn(); }
+    });
+    observer.observe(lb, { attributes: true, attributeFilter: ["style"] });
+
+    var overlay = document.getElementById("lightboxOverlay");
+    if (overlay) overlay.addEventListener("click", hideBtn);
+  }
+  watchLightbox();
+
+  document.addEventListener("keyup", function(e) {
+    if (e.key === "Escape") hideBtn();
+  });
+</script>
+<script>
+  lightbox.option({ wrapAround: true, fadeDuration: 250, resizeDuration: 250, disableScrolling: true });
+
+  var btn = document.getElementById('lb-close-btn');
+
+  function showBtn() { btn.style.display = 'block'; }
+  function hideBtn() { btn.style.display = 'none'; }
+
+  function doClose() {
+    var lbClose = document.querySelector('.lb-close');
+    if (lbClose) lbClose.click();
+    hideBtn();
+  }
+
+  btn.addEventListener('click', doClose);
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('a[data-lightbox]')) {
+      setTimeout(showBtn, 500);
+    }
+    if (e.target.id === 'lightboxOverlay') hideBtn();
+  });
+
+  document.addEventListener('keyup', function(e) {
+    if (e.key === 'Escape') hideBtn();
+  });
+</script>
+<div id="custom-overlay"><img id="custom-img" src="" alt=""></div>
+<div id="custom-close"></div>
+<script>
+  var overlay = document.getElementById('custom-overlay');
+  var img     = document.getElementById('custom-img');
+  var closeBtn = document.getElementById('custom-close');
+
+  function openLightbox(src) {
+    img.src = src;
+    overlay.classList.add('open');
+    closeBtn.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    closeBtn.style.display = 'none';
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+
+  // Open on image link click
+  document.querySelectorAll('a[data-lightbox]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      openLightbox(this.getAttribute('href'));
+    });
+  });
+
+  // Close on overlay background click (not on the image itself)
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeLightbox();
+  });
+
+  // Close on X button
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Close on ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  closeBtn.style.display = 'none';
+</script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research — Kyung-Hoon Jeong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f5f5f3;
+      color: #0a0a0a;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #0a0a0a;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: #fff; }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: #fff;
+      border: 1px solid #0a0a0a;
+      padding: 36px 40px;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 2px;
+    }
+    .page-header-num {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #bbb;
+    }
+    .page-header h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── RESEARCH BLOCK ── */
+    .block {
+      background: #fff;
+      border: 1px solid #0a0a0a;
+      border-top: none;
+      margin-bottom: 2px;
+    }
+    .block:last-child { margin-bottom: 0; }
+
+    .block-header {
+      padding: 20px 40px;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .block-num {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #bbb;
+    }
+    .block-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .block-body {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+    }
+
+    .block-text {
+      padding: 32px 40px;
+      border-right: 1px solid #e8e8e8;
+    }
+    .block-text p {
+      font-size: 14px;
+      line-height: 1.9;
+      color: #444;
+    }
+
+    /* ── IMAGE STRIP ── */
+    .block-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .img-item {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      border-left: 1px solid #e8e8e8;
+      border-bottom: 1px solid #e8e8e8;
+      position: relative;
+      cursor: pointer;
+    }
+    .img-item:nth-child(n+4) { border-bottom: none; }
+    .img-item a { display: block; width: 100%; height: 100%; }
+    .img-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      filter: grayscale(15%);
+    }
+    .img-item:hover img { transform: scale(1.06); }
+
+    /* 2-image layout */
+    .block-images.two-col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-text {
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .block-body { grid-template-columns: 1fr; }
+      .block-text { border-right: none; border-bottom: 1px solid #e8e8e8; }
+      .block-images { grid-template-columns: repeat(3, 1fr); }
+      nav { padding: 0 20px; }
+      .nav-links { gap: 18px; }
+    }
+  </style>
+  <style>
+    #custom-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 99999;
+      cursor: pointer;
+    }
+    #custom-overlay.open { display: flex; align-items: center; justify-content: center; }
+    #custom-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      cursor: default;
+      display: block;
+    }
+    #custom-close {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      z-index: 100000;
+    }
+    #custom-close::before, #custom-close::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 26px; height: 2px;
+      background: #fff;
+    }
+    #custom-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+    #custom-close::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+  <a href="index.html" class="nav-logo">Kyung-Hoon Jeong</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="research.html" class="active">Research</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  </div>
+</nav>
+
+<main class="page">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <span class="page-header-num">02</span>
+    <h1>Research</h1>
+  </div>
+
+  <!-- 01 BIOGEOGRAPHY -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">01</span>
+      <h2>Biogeography</h2>
+    </div>
+    <div class="block-body">
+      <div class="block-text">
+        <p>
+          East Asia is a geologically complex region characterised by intricate geomorphological 
+          structures and a dynamic geographical history. These deep-time geological processes 
+          have profoundly shaped the dispersal and vicariance of animal lineages throughout 
+          the region.
+        </p>
+        <p style="margin-top: 16px;">
+          Pseudoscorpions are ancient arachnids with origins dating to the Devonian. Their 
+          characteristically low dispersal ability and high degree of endemism make them 
+          particularly well-suited model organisms for studying historical biogeography. 
+          In my Master's research, I applied Sanger sequencing to reconstruct the 
+          biogeographical and evolutionary history of <em>Allochthonius</em> Chamberlin, 1929 — 
+          the most species-rich pseudoscorpion genus of the Korean Peninsula. In my ongoing 
+          Ph.D. research, I am extending this approach through population genomics of 
+          <em>Anchigarypus japonicus</em> (Beier, 1953), with the aim of elucidating the 
+          demographic and biogeographic history of this coastal species across East Asia.
+        </p>
+      </div>
+      <div class="block-images">
+        <div class="img-item">
+          <a href="bio_1.jpg" data-lightbox="bio" data-title="Biogeographical Research">
+            <img src="bio_1.jpg" alt="Biogeography 1">
+          </a>
+        </div>
+        <div class="img-item">
+          <a href="bio_2.jpg" data-lightbox="bio" data-title="Biogeographical Research">
+            <img src="bio_2.jpg" alt="Biogeography 2">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 TAXONOMY -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">02</span>
+      <h2>Taxonomy</h2>
+    </div>
+    <div class="block-body">
+      <div class="block-text">
+        <p>
+          Taxonomy provides the systematic framework for identifying and understanding 
+          biodiversity. Pseudoscorpions are well known for their narrow range endemism, 
+          yet the diversity of the order within the Korean Peninsula remains substantially 
+          underestimated.
+        </p>
+        <p style="margin-top: 16px;">
+          Neighbouring countries host three to eight times more described species than Korea — 
+          approximately 100 species in Japan and over 200 in China, compared to only 29 
+          currently recorded from the Korean Peninsula. I am actively working to document 
+          undescribed species across diverse habitats, from subterranean caves to coastal 
+          seashores, using an integrative taxonomic approach that combines morphological 
+          examination with molecular data, including DNA barcoding and species delimitation 
+          analyses (ASAP, GMYC, BPP), to accurately assess species boundaries and reveal 
+          cryptic diversity.
+        </p>
+      </div>
+      <div class="block-images">
+        <div class="img-item">
+          <a href="tax_1.jpg" data-lightbox="tax" data-title="Taxonomic Research">
+            <img src="tax_1.jpg" alt="Taxonomy 1">
+          </a>
+        </div>
+        <div class="img-item">
+          <a href="tax_2.jpg" data-lightbox="tax" data-title="Taxonomic Research">
+            <img src="tax_2.jpg" alt="Taxonomy 2">
+          </a>
+        </div>
+        <div class="img-item">
+          <a href="tax_3.jpg" data-lightbox="tax" data-title="Taxonomic Research">
+            <img src="tax_3.jpg" alt="Taxonomy 3">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 GENOMICS -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">03</span>
+      <h2>Genomics</h2>
+    </div>
+    <div class="block-body">
+      <div class="block-text">
+        <p>
+          Despite being one of the oldest arachnid orders, pseudoscorpions remain 
+          among the most poorly studied groups in terms of genomic research. Genomic 
+          resources for the order are almost entirely absent, leaving fundamental 
+          questions about their evolution unresolved.
+        </p>
+        <p style="margin-top: 16px;">
+          My genomic research spans multiple scales of biological organisation — from 
+          macroevolutionary patterns across the order to microevolutionary processes 
+          within populations. I am interested in genome assembly, phylogenomics, and 
+          population genomics as tools to address questions about diversification, 
+          historical demography, and lineage boundaries in pseudoscorpions.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-text">Leibniz Institute for the Analysis of Biodiversity Change, University of Hamburg</span>
+  <span class="footer-text">© 2025 Kyung-Hoon Jeong</span>
+</footer>
+
+
+<script>
+  lightbox.option({ wrapAround: true, fadeDuration: 250, resizeDuration: 250, disableScrolling: true });
+
+  var btn = document.getElementById('lb-close-btn');
+
+  function showBtn() { btn.style.display = 'block'; }
+  function hideBtn() { btn.style.display = 'none'; }
+
+  function doClose() {
+    var lbClose = document.querySelector('.lb-close');
+    if (lbClose) lbClose.click();
+  }
+
+  btn.addEventListener('click', doClose);
+
+  // Watch lightbox visibility via MutationObserver
+  function watchLightbox() {
+    var lb = document.getElementById('lightbox');
+    if (!lb) { setTimeout(watchLightbox, 100); return; }
+
+    var observer = new MutationObserver(function() {
+      if (lb.style.display === 'block') {
+        showBtn();
+      } else {
+        hideBtn();
+      }
+    });
+    observer.observe(lb, { attributes: true, attributeFilter: ['style'] });
+
+    // Also watch overlay click to hide btn
+    var overlay = document.getElementById('lightboxOverlay');
+    if (overlay) {
+      overlay.addEventListener('click', hideBtn);
+    }
+  }
+  watchLightbox();
+
+  document.addEventListener('keyup', function(e) {
+    if (e.key === 'Escape') hideBtn();
+  });
+</script>
+<div id="custom-overlay"><img id="custom-img" src="" alt=""></div>
+<div id="custom-close"></div>
+<script>
+  var overlay = document.getElementById('custom-overlay');
+  var img     = document.getElementById('custom-img');
+  var closeBtn = document.getElementById('custom-close');
+
+  function openLightbox(src) {
+    img.src = src;
+    overlay.classList.add('open');
+    closeBtn.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    closeBtn.style.display = 'none';
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+
+  // Open on image link click
+  document.querySelectorAll('a[data-lightbox]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      openLightbox(this.getAttribute('href'));
+    });
+  });
+
+  // Close on overlay background click (not on the image itself)
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeLightbox();
+  });
+
+  // Close on X button
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Close on ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  closeBtn.style.display = 'none';
+</script>
+</body>
+</html>

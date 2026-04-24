@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications — Kyung-Hoon Jeong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f5f5f3;
+      color: #0a0a0a;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #0a0a0a;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: #fff; }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: #fff;
+      border: 1px solid #0a0a0a;
+      padding: 36px 40px;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 2px;
+    }
+    .page-header-num {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #bbb;
+    }
+    .page-header h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── BLOCK ── */
+    .block {
+      background: #fff;
+      border: 1px solid #0a0a0a;
+      border-top: none;
+      margin-bottom: 2px;
+    }
+    .block:last-child { margin-bottom: 0; }
+
+    .block-header {
+      padding: 16px 40px;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .block-num { font-size: 9px; letter-spacing: 0.2em; color: #bbb; }
+    .block-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* ── PUBLICATION ENTRIES ── */
+    .entry {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .entry:last-child { border-bottom: none; }
+
+    .entry-num {
+      padding: 12px 0 12px 40px;
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: 0.1em;
+      padding-top: 14px;
+    }
+    .entry-body {
+      padding: 12px 40px 12px 16px;
+    }
+    .entry-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #0a0a0a;
+      line-height: 1.5;
+      margin-bottom: 5px;
+    }
+    .entry-title em { font-style: italic; font-weight: 400; }
+    .entry-authors {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 5px;
+    }
+    .entry-authors strong {
+      font-weight: 500;
+      color: #0a0a0a;
+    }
+    .entry-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .entry-journal {
+      font-size: 12px;
+      color: #444;
+      font-style: italic;
+    }
+    .badge {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border: 1px solid;
+    }
+    .badge-q1  { border-color: #0a0a0a; color: #0a0a0a; }
+    .badge-q2  { border-color: #888; color: #888; }
+    .badge-review  { border-color: #bbb; color: #bbb; }
+    .badge-accepted { border-color: #555; color: #555; }
+    .entry-doi a {
+      font-size: 11px;
+      color: #888;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .entry-doi a:hover { color: #0a0a0a; border-color: #0a0a0a; }
+
+    /* ── CONFERENCE ── */
+    .conf-entry {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .conf-entry:last-child { border-bottom: none; }
+    .conf-num {
+      padding: 10px 0 10px 40px;
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: 0.1em;
+    }
+    .conf-body {
+      padding: 10px 40px 10px 16px;
+    }
+    .conf-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #0a0a0a;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .conf-title em { font-style: italic; font-weight: 400; }
+    .conf-authors {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 4px;
+    }
+    .conf-authors strong { font-weight: 500; color: #555; }
+    .conf-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .conf-where { font-size: 11px; color: #999; }
+    .badge-oral   { border-color: #0a0a0a; color: #0a0a0a; }
+    .badge-poster { border-color: #aaa; color: #aaa; }
+
+    /* ── AWARDS ── */
+    .award-entry {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .award-entry:last-child { border-bottom: none; }
+    .award-num {
+      padding: 10px 0 10px 40px;
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: 0.1em;
+    }
+    .award-body {
+      padding: 10px 40px 10px 16px;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.6;
+    }
+    .award-body strong { font-weight: 500; color: #0a0a0a; }
+
+    /* ── NEWS ── */
+    .news-entry {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .news-entry:last-child { border-bottom: none; }
+    .news-num {
+      padding: 10px 0 10px 40px;
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: 0.1em;
+    }
+    .news-body {
+      padding: 10px 40px 10px 16px;
+    }
+    .news-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #0a0a0a;
+      line-height: 1.5;
+      margin-bottom: 3px;
+    }
+    .news-meta {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 3px;
+    }
+    .news-body a {
+      font-size: 11px;
+      color: #888;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      word-break: break-all;
+    }
+    .news-body a:hover { color: #0a0a0a; border-color: #0a0a0a; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-text { font-size: 10px; color: #aaa; letter-spacing: 0.06em; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 18px; }
+      .page-header, .block-header { padding-left: 20px; padding-right: 20px; }
+      .entry-num, .conf-num, .award-num, .news-num { padding-left: 20px; }
+      .entry-body, .conf-body, .award-body, .news-body { padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+  <a href="index.html" class="nav-logo">Kyung-Hoon Jeong</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="publications.html" class="active">Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  </div>
+</nav>
+
+<main class="page">
+
+  <div class="page-header">
+    <span class="page-header-num">03</span>
+    <h1>Publications</h1>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">01</span>
+      <h2>Peer-reviewed Articles</h2>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">01</div>
+      <div class="entry-body">
+        <div class="entry-title">A new species of <em>Ditha</em> (Pseudoscorpiones, Chthoniidae, Tridenchthoniinae) from the Western Ghats of India, with an identification key for the genus</div>
+        <div class="entry-authors"><strong>Jeong, K. H.</strong>, Johnson, J., &amp; Harms, D.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">Zoosystematics and Evolution</span>
+          <span class="conf-where">2024 · 100(1): 1–8</span>
+          <span class="entry-doi"><a href="https://doi.org/10.3897/zse.100.110020" target="_blank">DOI ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">02</div>
+      <div class="entry-body">
+        <div class="entry-title">New species of the pseudoscorpion genus <em>Pararoncus</em> (Pseudoscorpiones, Syarinidae) from Korea</div>
+        <div class="entry-authors"><strong>Jeong, K. H.</strong>, Harms, D., &amp; Yoo, J. S.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">Evolutionary Systematics</span>
+          <span class="conf-where">2024 · 8(1): 91–100</span>
+          <span class="entry-doi"><a href="https://doi.org/10.3897/evolsyst.8.123108" target="_blank">DOI ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">03</div>
+      <div class="entry-body">
+        <div class="entry-title">The pseudoscorpion genus <em>Nipponogarypus</em> (Pseudoscorpiones, Olpiidae) found in seashore habitats in Japan and Korea</div>
+        <div class="entry-authors"><strong>Jeong, K. H.</strong>, Harms, D., &amp; Yoo, J. S.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">Zoosystematics and Evolution</span>
+          <span class="conf-where">2024 · 100(3): 1053–1060</span>
+          <span class="entry-doi"><a href="https://doi.org/10.3897/zse.100.123213" target="_blank">DOI ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">04</div>
+      <div class="entry-body">
+        <div class="entry-title">Four new species of dragon pseudoscorpions (Pseudoscorpiones, Pseudotyrannochthoniidae, <em>Spelaeochthonius</em>) from caves in South Korea revealed by integrative taxonomy</div>
+        <div class="entry-authors"><strong>Jeong, K. H.</strong>, Harms, D., Yoo, J. S., &amp; Kim, S.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">PLoS ONE</span>
+          <span class="conf-where">2025 · 20(7): e0325375</span>
+          <span class="entry-doi"><a href="https://doi.org/10.1371/journal.pone.0325375" target="_blank">DOI ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">05</div>
+      <div class="entry-body">
+        <div class="entry-title">Two new species of <em>Parobisium</em> (Pseudoscorpiones, Neobisiidae) Chamberlin, 1930 from South Korea, with a preliminary phylogeny of the genus</div>
+        <div class="entry-authors"><strong>Jeong, K. H.</strong>, Harms, D., Yoo, J. S., &amp; Kim, S.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">Zootaxa</span>
+          <span class="conf-where">2026 · 5741(2): 339–352</span>
+          <span class="entry-doi"><a href="https://doi.org/10.11646/zootaxa.5741.2.6" target="_blank">DOI ↗</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">06</div>
+      <div class="entry-body">
+        <div class="entry-title">Korean dragon pseudoscorpions revisited: a taxonomic review of <em>Allochthonius</em> (Pseudoscorpiones, Pseudotyrannochthoniidae) Chamberlin, 1929 with three new species</div>
+        <div class="entry-authors"><strong>Jeong, K. H.</strong>, Harms, D., &amp; Kim, S.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">PeerJ</span>
+          <span class="badge badge-accepted">Accepted</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">07</div>
+      <div class="entry-body">
+        <div class="entry-title">The Asian Dragon Puzzle: how multiple dispersal events have shaped the evolutionary history of eastern Asian dragon pseudoscorpions (Arachnida, Pseudoscorpiones, <em>Allochthonius</em>)</div>
+        <div class="entry-authors"><strong>Jeong, K. H.</strong>, Kim, D., Guo, X., Zhang, F., Harms, D., &amp; Kim, S.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">Zoological Journal of the Linnean Society</span>
+          <span class="badge badge-review">Under Review</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-num">08</div>
+      <div class="entry-body">
+        <div class="entry-title">Ancient endemism in a global biodiversity hotspot: an integrative revision of Tyrannochthoniini pseudoscorpions (Pseudoscorpiones, Chthoniidae) from the Western Ghats of India</div>
+        <div class="entry-authors">Johnson, J., <strong>Jeong, K. H.</strong>, Harms, D., &amp; Joseph, M.</div>
+        <div class="entry-meta">
+          <span class="entry-journal">Zoological Journal of the Linnean Society</span>
+          <span class="badge badge-review">Under Review</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AWARDS -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">02</span>
+      <h2>Awards &amp; Grants</h2>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">01</div>
+      <div class="award-body">2024–2025 &nbsp;·&nbsp; <strong>Support Project for Strengthening Research Achievements of New Researchers</strong>, Jeonbuk National University</div>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">02</div>
+      <div class="award-body">2025 &nbsp;·&nbsp; <strong>1st Place, Oral Presentation</strong>, Korean Society of Applied Entomology</div>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">03</div>
+      <div class="award-body">2025–2026 &nbsp;·&nbsp; <strong>Global Top 100 Global Joint Research Support Project in Excellent Academic Fields</strong>, Jeonbuk National University</div>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">04</div>
+      <div class="award-body">2025 &nbsp;·&nbsp; <strong>President's Award, JBNU-G Outstanding Researcher Award Program</strong>, Jeonbuk National University</div>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">05</div>
+      <div class="award-body">2025 &nbsp;·&nbsp; <strong>ECA Student Grant</strong>, Free Waiver for the 35th European Congress of Arachnology</div>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">06</div>
+      <div class="award-body">2025 &nbsp;·&nbsp; <strong>Talent Award of Korea</strong>, Ministry of Education, Republic of Korea</div>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">07</div>
+      <div class="award-body">2026 &nbsp;·&nbsp; <strong>State Graduate Funding Programme Scholarship (HmbNFG)</strong>, University of Hamburg</div>
+    </div>
+    <div class="award-entry">
+      <div class="award-num">08</div>
+      <div class="award-body">2026 &nbsp;·&nbsp; <strong>Theodore Roosevelt Memorial Fund</strong>, American Museum of Natural History</div>
+    </div>
+  </div>
+
+  <!-- CONFERENCES -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">03</span>
+      <h2>Conference Presentations</h2>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">01</div>
+      <div class="conf-body">
+        <div class="conf-title">First record of the family Olpiidae Banks, 1895 (Arachnida, Pseudoscorpiones) from Korea</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, &amp; Lee, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Sep 2022</span><span class="badge badge-poster">Poster</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">02</div>
+      <div class="conf-body">
+        <div class="conf-title">Understudied and ecologically significant: exploring the Pseudoscorpiones of Korea</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Sep 2023</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">03</div>
+      <div class="conf-body">
+        <div class="conf-title">Exploring Pseudoscorpiones: diversity and insights from Korea</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Sep 2023</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">04</div>
+      <div class="conf-body">
+        <div class="conf-title">Past, present, and future of Korean <em>Spelaeochthonius</em></div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Apr 2024</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">05</div>
+      <div class="conf-body">
+        <div class="conf-title">Road to cave: speciation hypothesis of <em>Spelaeochthonius</em></div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, Harms, D., Yoo, J. S., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">European Congress of Arachnology · Aug 2024</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">06</div>
+      <div class="conf-body">
+        <div class="conf-title">Investigating the biodiversity of South Korea, with species delimitation of <em>Allochthonius</em></div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Sep 2024</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">07</div>
+      <div class="conf-body">
+        <div class="conf-title">A phylogeography of <em>Allochthonius</em> (Pseudoscorpiones, Pseudotyrannochthoniidae) demonstrated dynamic evolutionary history in East Asia</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, Kim, D., Guo, X., Zhang, F., Harms, D., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Apr 2025</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">08</div>
+      <div class="conf-body">
+        <div class="conf-title">A new species of <em>Nipponogarypus</em> (Pseudoscorpiones, Olpiidae) in Korea</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, Kim, J., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Apr 2025</span><span class="badge badge-poster">Poster</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">09</div>
+      <div class="conf-body">
+        <div class="conf-title">Four new species of <em>Spelaeochthonius</em> in South Korea revealed by integrative taxonomy</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, Harms, D., Yoo, J. S., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Apr 2025</span><span class="badge badge-poster">Poster</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">10</div>
+      <div class="conf-body">
+        <div class="conf-title">Biogeographical analyses identified high diversity of the genus <em>Allochthonius</em> Chamberlin, 1929</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, Kim, D., Guo, X., Zhang, F., Harms, D., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">The Korean Association of Biological Sciences · Jul 2025</span><span class="badge badge-poster">Poster</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">11</div>
+      <div class="conf-body">
+        <div class="conf-title">A new species of <em>Dactylochelifer</em> (Pseudoscorpiones, Cheliferidae) Beier, 1932, a potential enemy for <em>Varroa</em> (Mesostigmata, Laelapidae)</div>
+        <div class="conf-authors">Park, J., <strong>Jeong, K. H.</strong>, Kim, S. Y., Yang, J., Park, B. S., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Conference of the Apicultural Society of Korea · Aug 2025</span><span class="badge badge-poster">Poster</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">12</div>
+      <div class="conf-body">
+        <div class="conf-title">Across islands and coastlines: phylogenetic insights into the East Asian pseudoscorpion genus <em>Nipponogarypus</em> Morikawa, 1955</div>
+        <div class="conf-authors">Lin, H. Y., Zhang, W. Z., <strong>Jeong, K. H.</strong>, Akiyama, M., Shimano, S., &amp; Chang, C. H.</div>
+        <div class="conf-meta"><span class="conf-where">European Congress of Arachnology · Sep 2025</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">13</div>
+      <div class="conf-body">
+        <div class="conf-title">Biogeographical analyses showed the multiple dispersal history of <em>Allochthonius</em> in East Asia</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, Kim, D., Guo, X., Zhang, F., Harms, D., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">European Congress of Arachnology · Sep 2025</span><span class="badge badge-oral">Oral</span></div>
+      </div>
+    </div>
+
+    <div class="conf-entry">
+      <div class="conf-num">14</div>
+      <div class="conf-body">
+        <div class="conf-title">Comprehensive phylogenetics of Pseudoscorpiones using backbone and data mining</div>
+        <div class="conf-authors"><strong>Jeong, K. H.</strong>, Han, H., Park, J., Kim, J., Johnson, J., Lin, H. Y., Harms, D., &amp; Kim, S.</div>
+        <div class="conf-meta"><span class="conf-where">Korean Society of Applied Entomology · Apr 2026</span><span class="badge badge-poster">Poster</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NEWS -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">04</span>
+      <h2>News &amp; Media Coverage</h2>
+    </div>
+
+    <div class="news-entry">
+      <div class="news-num">01</div>
+      <div class="news-body">
+        <div class="news-title">The stinger is on the pincer, not the tail… "Fake Scorpions" discovered on the beach and in the mountains</div>
+        <div class="news-meta">Shin, J. H. &nbsp;·&nbsp; The JoongAng &nbsp;·&nbsp; 21 Sep 2024</div>
+        <a href="https://www.joongang.co.kr/article/25278983" target="_blank">joongang.co.kr ↗</a>
+      </div>
+    </div>
+
+    <div class="news-entry">
+      <div class="news-num">02</div>
+      <div class="news-body">
+        <div class="news-title">Tailless "Fake Scorpion" appears… three new pseudoscorpion species discovered</div>
+        <div class="news-meta">Kim, J. S. &nbsp;·&nbsp; Hankyoreh &nbsp;·&nbsp; 12 Sep 2024</div>
+        <a href="https://www.hani.co.kr/arti/animalpeople/ecology_evolution/1158219.html" target="_blank">hani.co.kr ↗</a>
+      </div>
+    </div>
+
+    <div class="news-entry">
+      <div class="news-num">03</div>
+      <div class="news-body">
+        <div class="news-title">Master's student Jeong Kyung-Hoon elucidating the evolutionary history of East Asian pseudoscorpions</div>
+        <div class="news-meta">Jang, H. &nbsp;·&nbsp; Korea Lecturer News &nbsp;·&nbsp; 19 Jun 2025</div>
+        <a href="https://www.lecturernews.com/news/articleView.html?idxno=180760" target="_blank">lecturernews.com ↗</a>
+      </div>
+    </div>
+
+    <div class="news-entry">
+      <div class="news-num">04</div>
+      <div class="news-body">
+        <div class="news-title">Master's student Jeong Kyung-Hoon elucidating the evolutionary history of East Asian pseudoscorpions</div>
+        <div class="news-meta">Kim, H. Y. &nbsp;·&nbsp; Veritas-Alpha &nbsp;·&nbsp; 16 Jun 2025</div>
+        <a href="https://www.veritas-a.com/news/articleView.html?idxno=558652" target="_blank">veritas-a.com ↗</a>
+      </div>
+    </div>
+
+    <div class="news-entry">
+      <div class="news-num">05</div>
+      <div class="news-body">
+        <div class="news-title">New pseudoscorpions with dragon-like jaws discovered in a South Korean cave</div>
+        <div class="news-meta">Baisas, L. &nbsp;·&nbsp; Popular Science &nbsp;·&nbsp; 9 Jul 2025</div>
+        <a href="https://www.popsci.com/environment/pseudoscorpions-cave-south-korea/" target="_blank">popsci.com ↗</a>
+      </div>
+    </div>
+
+    <div class="news-entry">
+      <div class="news-num">06</div>
+      <div class="news-body">
+        <div class="news-title">Blind dragon-like creatures found through South Korean caves</div>
+        <div class="news-meta">Hooper, B. &nbsp;·&nbsp; BBC Discover Wildlife &nbsp;·&nbsp; 10 Jul 2025</div>
+        <a href="https://www.discoverwildlife.com/animal-facts/dragon-pseudoscorpions-south-korea" target="_blank">discoverwildlife.com ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-text">Leibniz Institute for the Analysis of Biodiversity Change, University of Hamburg</span>
+  <span class="footer-text">© 2025 Kyung-Hoon Jeong</span>
+</footer>
+
+</body>
+</html>
